@@ -15,13 +15,16 @@ class CifarLoader(DataLoader):
 		print(1)
 		return
 
-	#dataset_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10"	
+	#dataset_path = "/content/CIFAR_PIPELINE_OOPS/dataset/cifar10/test"	
 	def create_dataset(self):
-		#data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10/"
-		#dataset_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10/test"
+		#data_path = "/content/CIFAR_PIPELINE_OOPS/dataset/cifar10"
+		#dataset_path = "/content/CIFAR_PIPELINE_OOPS/dataset/cifar10/test"
+
 		appended_data = []
-		#for directory in os.listdir(self.config.config_namespace.dataset_path):
+		#print('avadhut')
+		#print(self.config.config_namespace.dataset_path)
 		for directory in os.listdir(self.config.config_namespace.dataset_path):
+		#for directory in os.listdir(dataset_path):
 		  #print(directory)
 		  #print(os.path.join(path, directory))
 		  dir_path = os.path.join(self.config.config_namespace.dataset_path, directory)
@@ -41,7 +44,7 @@ class CifarLoader(DataLoader):
 
 	def split_dataset(self):
 				
-		#data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10"
+		#data_path = "/content/CIFAR_PIPELINE_OOPS/dataset/cifar10"
 		test_split_random_state = 123
 		val_split_random_state = 123
 		test_size = 0.2
@@ -76,7 +79,7 @@ class CifarLoader(DataLoader):
 		#return
 
 	def load_dataset(self):
-		#data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10"
+		#data_path = "/content/CIFAR_PIPELINE_OOPS/dataset/cifar10"
 		with open(self.config.config_namespace.data_path + 'split.pickle', 'rb') as handle:
 		#with open(data_path + '/' + 'split.pickle', 'rb') as handle:
 			data = pickle.load(handle)

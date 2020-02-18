@@ -37,15 +37,15 @@ class DataLoader(object):
 		self.val_label_one_hot  = np.array([])
 		self.test_label_one_hot  = np.array([])
 
-		# Load the dataset from disk/library.
-		self.load_dataset()
-
 		# create the dataset from disk/library.
 		self.create_dataset()
 
 		# create the dataset from disk/library.
 		self.split_dataset()
 
+    # Load the dataset from disk/library.
+		self.load_dataset()
+    
 		# Calculate the number of class labels and list them.
 		self.calculate_class_label_size()
 
