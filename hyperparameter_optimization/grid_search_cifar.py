@@ -1,20 +1,9 @@
-#!/usr/bin/env python3
-"""
-Implements grid search for a optimal set of hyperparameters to train the ConvNet model for fashion_mnist dataset.
-
-Created on Thu Apr 26 01:28:17 2018
-
-@author: Santosh Pattar
-@author: Veerabadrappa
-@version: 1.0
-"""
-
 from base.grid_search_base import GridSearchBase
 from model.fashion_mnist_model import FashionMnistModel
 from sklearn.model_selection import GridSearchCV
 from keras.wrappers.scikit_learn import KerasClassifier
-from model.fashion_mnist_model import FashionMnistModel
-from data_loader.fashion_mnist_loader import FashionMnistLoader
+from model.cifar_model import CifarModel
+from data_loader.cifar_loader import CifarLoader
 from utils.process_argument import get_args
 from utils.process_configuration import ConfigurationParameters
 
@@ -28,7 +17,7 @@ def create_model(self):
 	:raises none
 	"""
 	
-	model = FashionMnistModel(self.config, self.dataset)
+	model = CifarModel(self.config, self.dataset)
 	cnn_model = model.define_model()
 	return cnn_model
 
@@ -45,7 +34,7 @@ def main():
 		exit(0)
 	
 
-	dataset = FashionMnistLoader(config)
+	dataset = CifarLoader(config)
 	
 	g_search = GridSearchBase(config, dataset)
 

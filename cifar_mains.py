@@ -7,7 +7,7 @@ set_random_seed(2)
 from utils.process_configuration import ConfigurationParameters
 from data_loader.cifar_loader import CifarLoader
 #import base.model_base import BaseModel
-from model.fashion_mnist_model import FashionMnistModel
+from model.cifar_model import CifarModel
 from utils.model_utils import Report
 from utils.process_argument import get_args
 
@@ -33,7 +33,7 @@ def main():
 	dataset.display_data_element( 'test_data', 1 )
 
 	# Construct, compile, train and evaluate the ConvNet Model.
-	model = FashionMnistModel(config, dataset)
+	model = CifarModel(config, dataset)
 
 	# Save the ConvNet model to the disk.
 	# model.save_model()

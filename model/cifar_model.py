@@ -6,7 +6,7 @@ from keras.layers.advanced_activations import LeakyReLU
 from keras.models import load_model
 import time
 
-class FashionMnistModel(BaseModel):
+class CifarModel(BaseModel):
 
 	def __init__(self, config, dataset):
 		"""
