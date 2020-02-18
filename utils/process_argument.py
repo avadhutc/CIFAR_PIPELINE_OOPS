@@ -25,7 +25,7 @@ def get_args():
 	# Convert to dictonary.
 	args = vars(parser.parse_args())
 
-	if( args['config'] == './configuration_files/fashion_config.json' ):
+	if( args['config'] == './configuration_files/cifar_config.json' ):
 		print('Using default configuration file.')
 	else:
 		print('Using configurations from file:', args['config'])
