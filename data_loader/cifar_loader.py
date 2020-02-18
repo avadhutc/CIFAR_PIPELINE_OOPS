@@ -17,15 +17,15 @@ class CifarLoader(DataLoader):
 
 	#dataset_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10"	
 	def create_dataset(self):
-		data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10/"
-		dataset_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10/test"
+		#data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10/"
+		#dataset_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10/test"
 		appended_data = []
 		#for directory in os.listdir(self.config.config_namespace.dataset_path):
-		for directory in os.listdir(dataset_path):
+		for directory in os.listdir(self.config.config_namespace.dataset_path):
 		  #print(directory)
 		  #print(os.path.join(path, directory))
-		  #dir_path = os.path.join(self.config.config_namespace.dataset_path, directory)
-		  dir_path = os.path.join(dataset_path, directory)
+		  dir_path = os.path.join(self.config.config_namespace.dataset_path, directory)
+		  #dir_path = os.path.join(dataset_path, directory)
 		  if os.path.isdir(dir_path):
 		    #print(1)
 		    for filename in os.listdir(dir_path):
@@ -33,21 +33,21 @@ class CifarLoader(DataLoader):
 		      #data = pd.read_excel(filename)
 		      data = {'path' : dir_path + '/' + filename, 'label': directory}
 		      appended_data.append(data)
-		#with open(self.config.config_namespace.dataset_path + 'dataset.pickle', 'wb') as handle:
-		with open(data_path + '/' + 'dataset.pickle', 'wb') as handle:
+		with open(self.config.config_namespace.data_path + 'dataset.pickle', 'wb') as handle:
+		#with open(data_path + '/' + 'dataset.pickle', 'wb') as handle:
 		  pickle.dump(appended_data, handle)		
  		
 		#return
 
 	def split_dataset(self):
 				
-		data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10"
+		#data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10"
 		test_split_random_state = 123
 		val_split_random_state = 123
 		test_size = 0.2
 		val_size = 0.2
-		#with open(self.config.config_namespace.dataset_path + 'dataset.pickle', 'rb') as handle:
-		with open(data_path + '/' + 'dataset.pickle', 'rb') as handle:
+		with open(self.config.config_namespace.data_path + 'dataset.pickle', 'rb') as handle:
+		#with open(data_path + '/' + 'dataset.pickle', 'rb') as handle:
 			data = pickle.load(handle)
 
 		X = pd.DataFrame.from_dict(data)
@@ -55,17 +55,17 @@ class CifarLoader(DataLoader):
 
 		transfomed_label = encoder.fit_transform(X['label'])
 		X_trainm, X_test, y_trainm, y_test = train_test_split(X['path'], transfomed_label, 
-                                                    test_size=test_size, 
-                                                    random_state=test_split_random_state)
+                                                    test_size=self.config.config_namespace.test_size, 
+                                                    random_state=self.config.config_namespace.test_split_random_state)
 		#print(X_trainm.shape, X_test.shape, y_trainm.shape, y_test.shape)
 		X_train, X_val, y_train, y_val = train_test_split(X_trainm, y_trainm, 
-		                                                    test_size=val_size, 
-		                                                    random_state=val_split_random_state)
+		                                                    test_size=self.config.config_namespace.val_size, 
+		                                                    random_state=self.config.config_namespace.val_split_random_state)
 		#print(X_train.shape, X_val.shape, X_test.shape y_train.shape, y_val.shape)
 		split_data = {"x_train": X_train, "y_train": y_train, "x_val": X_val, "y_val": y_val,
 					  "x_test": X_test, "y_test": y_test}
-		#with open(self.config.config_namespace.dataset_path + 'split.pickle', 'wb') as handle:
-		with open(data_path + '/' + 'split.pickle', 'wb') as handle:
+		with open(self.config.config_namespace.data_path + 'split.pickle', 'wb') as handle:
+		#with open(data_path + '/' + 'split.pickle', 'wb') as handle:
 			pickle.dump(split_data, handle)
 
 		print("Train data size:", X_trainm.shape[0])
@@ -76,9 +76,9 @@ class CifarLoader(DataLoader):
 		#return
 
 	def load_dataset(self):
-		data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10"
-		#with open(self.config.config_namespace.dataset_path + 'split.pickle', 'rb') as handle:
-		with open(data_path + '/' + 'split.pickle', 'rb') as handle:
+		#data_path = "/content/CIFAR_OOPS_PPL/dataset/cifar10"
+		with open(self.config.config_namespace.data_path + 'split.pickle', 'rb') as handle:
+		#with open(data_path + '/' + 'split.pickle', 'rb') as handle:
 			data = pickle.load(handle)
 
 		##X = pd.DataFrame.from_dict(data,  orient='index')
@@ -130,14 +130,14 @@ class CifarLoader(DataLoader):
 			plt.imshow( self.train_data[index, : , : ] )
 			#plt.imshow( self.trainData[index, : , : ] )
 			# plt.show()
-			plt.savefig('/content/CIFAR_OOPS_PPL/dataset/cifar10/sample_training.png', bbox_inches='tight')
+			plt.savefig(self.config.config_namespace.data_path + 'sample_training.png', bbox_inches='tight')
 			plt.close()
 
 		elif(which_data == "test_data"):
 			plt.imshow( self.test_data[index,:,:] )
 			#plt.imshow( self.testData[index,:,:])
 			# plt.show()
-			plt.savefig('/content/CIFAR_OOPS_PPL/dataset/cifar10/sample_testing.png', bbox_inches='tight')
+			plt.savefig(self.config.config_namespace.data_path + 'sample_testing.png', bbox_inches='tight')
 		else:
 			print("Error: display_data_element: whicData parameter is invalid !")
 

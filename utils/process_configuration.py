@@ -1,17 +1,3 @@
-#!/usr/bin/env python3
-"""
-Parse the JSON configuration file of the experiment.
-
-Configuration file holds the parameters to intialize the ConvNet model.
-These files are located in configaration_files folder.
-
-Created on Sun Apr 22 21:02:54 2018
-
-@author: Santosh Pattar
-@author: Veerabadrappa
-@version: 1.0
-"""
-
 import json
 import os
 from bunch import Bunch
@@ -19,14 +5,7 @@ from bunch import Bunch
 class ConfigurationParameters:
 
 	def __init__(self, args):
-		"""
-		Intialize the data members.
-
-		:param json_file: Path to the JSON configuration file.
-		:return none
-		:raises none
-		"""
-
+		
 		self.args = args
 
 		json_file = self.args['config']

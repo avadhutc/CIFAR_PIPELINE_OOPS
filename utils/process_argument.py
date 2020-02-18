@@ -1,27 +1,7 @@
-#!/usr/bin/env python3
-"""
-Process the json configuration file.
-
-Configuration file holds the parameters to intialize the CNN model.
-These files are located in configaration_files folder.
-
-Created on Wed May 2 09:02:54 2018
-
-@author: Santosh Pattar
-@author: Veerabadrappa
-@version: 1.0
-"""
 import argparse
 
 def get_args():
-	"""
-	Get arguments from the command line.
-
-	:param none
-	:return none
-	:raises none
-	"""
-    
+	    
 	parser = argparse.ArgumentParser( description = __doc__ )
 
 	# Configuration file path argument.
@@ -29,7 +9,7 @@ def get_args():
 						'-c', '--config',
 						metavar = 'C',
 						help = 'The Configuration file',
-						default = './configuration_files/fashion_config.json',
+						default = './configuration_files/cifar_config.json',
 						required = False
 					)
 
