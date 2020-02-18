@@ -43,7 +43,7 @@
 	"evaluate_verbose": 1,
 	"predict_verbose": 1,
 	"dataset_path": "/content/CIFAR_PIPELINE_OOPS/dataset/cifar10/test",
-	"data_path" : "/content/CIFAR_PIPELINE_OOPS/dataset/cifar10",
+	"data_path" : "/content/CIFAR_PIPELINE_OOPS/dataset/cifar10/",
 	"test_split_random_state": 0,
 	"val_split_random_state": 0
 }
